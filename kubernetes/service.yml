@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: ops
+  name: cloudfront-certmanager
+spec:
+  type: ClusterIP
+  ports:
+  - name: cloudfront-certmanager
+    port: 80
+    targetPort: 80
+    protocol: TCP
+  - name: cloudfront-certmanager-ssl
+    port: 443
+    targetPort: 443
+    protocol: TCP
+  selector:
+    app: cloudfront-certmanager

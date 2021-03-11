@@ -1,0 +1,39 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  namespace: ops
+  name: cloudfront-certmanager
+  labels:
+    app: cloudfront-certmanager
+spec:
+  schedule: "0 0 * * 0"
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            app: cloudfront-certmanager
+        spec:
+          serviceAccountName: cloudfront-certmanager
+          restartPolicy: OnFailure
+          containers:
+          - name: cloudfront-certmanager
+            imagePullPolicy: Always
+            image: ceunenio/cloudfront-certmanager:0.1
+            command: ['python','-u','renew.py']
+            envFrom:
+              - configMapRef:
+                  name: cloudfront-certmanager
+              - secretRef:
+                  name: cloudfront-certmanager
+            ports:
+            - name: web
+              containerPort: 80
+              protocol: TCP
+            resources:
+              limits:
+                cpu: 250m
+                memory: 250Mi
+              requests:
+                cpu: 20m
+                memory: 50Mi
