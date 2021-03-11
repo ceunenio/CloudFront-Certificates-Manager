@@ -1,6 +1,6 @@
 # CloudFront Certificates Manager
 
-CloudFront Certificates manager runs every week and requests new Let's Encrypt certificates if needed, they will be uploaded to ACM. The initial setup of CloudFront still needs to be done, but after that certificates will be renewed automatically.
+CloudFront Certificates manager will run every month and requests new Let's Encrypt certificates for ingresses with specific annotations. They will be uploaded to ACM so CloudFront can make use of these. The initial setup of CloudFront still needs to be done, but after that certificates will be renewed automatically.
 
 [![DockerHub Badge](https://dockeri.co/image/ceunenio/cloudfront-certmanager)](https://hub.docker.com/r/ceunenio/cloudfront-certmanager)
 
