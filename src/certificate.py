@@ -13,12 +13,12 @@ def create_certificate(ingress_domains, email, env):
   call('rm certbot_log'.split())
 
   if code != 0:
-    message = 'Failed at renewing certificates for %s' % (str(ingress_domains))
+    message = 'Failed at obtaining certificates for %s' % (str(ingress_domains))
     notify(message, 'danger')
     return
 
-  certificate_acm(ingress_domains[0], 'UPSERT')
-
   if code == 0 and "Certificate not yet due for renewal" not in res:
-    message = 'Succesfully renewed certificates for %s' % (str(ingress_domains))
+    message = 'Succesfully obtained new certificates for %s' % (str(ingress_domains))
     notify(message, 'good')
+
+  certificate_acm(ingress_domains[0], 'UPSERT')

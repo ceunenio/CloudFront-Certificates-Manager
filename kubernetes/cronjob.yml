@@ -19,7 +19,7 @@ spec:
           containers:
           - name: cloudfront-certmanager
             imagePullPolicy: Always
-            image: ceunenio/cloudfront-certmanager:0.1
+            image: ceunenio/cloudfront-certmanager:0.2
             command: ['python','-u','renew.py']
             envFrom:
               - configMapRef:
