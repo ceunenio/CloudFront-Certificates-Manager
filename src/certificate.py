@@ -4,7 +4,7 @@ from aws import certificate_acm
 import os
 
 def create_certificate(ingress_domains, email, env):
-  command = ('certbot certonly --agree-tos --manual --manual-public-ip-logging-ok --preferred-challenges http -n -m ' + email + ' --manual-auth-hook=/s3-push.sh --manual-cleanup-hook=/s3-cleanup.sh --expand -d ' + ' -d '.join(ingress_domains)).split()
+  command = ('certbot certonly --agree-tos --manual --manual-public-ip-logging-ok --preferred-challenges http -n -m ' + email + ' --manual-auth-hook=./s3-push.sh --manual-cleanup-hook=./s3-cleanup.sh --expand -d ' + ' -d '.join(ingress_domains)).split()
 
   output_file = open('certbot_log', 'w')
   code = call(command, stdout=output_file, stderr=output_file, env=env)
