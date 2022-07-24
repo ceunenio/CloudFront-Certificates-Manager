@@ -3,7 +3,7 @@ from kubernetes import client, config
 from certificate import create_certificate
 
 config.load_incluster_config()
-kubernetesv1 = client.ExtensionsV1beta1Api()
+kubernetesv1 = client.NetworkingV1Api()
 
 EMAIL = os.environ['EMAIL']
 AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
